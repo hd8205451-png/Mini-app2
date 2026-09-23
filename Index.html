@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Сообщество Скитальцев</title>
+    <!-- Подключаем скрипт Telegram Web App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background-color: var(--tg-theme-bg-color, #1c1c1e);
+            color: var(--tg-theme-text-color, #ffffff);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .card {
+            background-color: var(--tg-theme-secondary-bg-color, #2c2c2e);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #ff4d6d;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+        h1 {
+            font-size: 22px;
+            margin: 0 0 10px 0;
+            color: #ff4d6d;
+        }
+        .menu-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: var(--tg-theme-button-color, #007aff);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .menu-btn:active {
+            opacity: 0.7;
+        }
+        .rules-text {
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.5;
+            display: none; /* Скрыто по умолчанию */
+            margin-top: 15px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .rules-text ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        .rules-text li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            color: #ff4d6d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Замените ссылку ниже на прямую ссылку на вашу картинку -->
+        <img src="https://i.pinimg.com/736x/8a/5e/6f/8a5e6f2f4e6e4b3e2c1a0d9e8f7a6b5c.jpg" alt="Аватар" class="avatar">
+        
+        <h1>Сообщество Скитальцев</h1>
+        <p style="font-size: 14px; color: #aaa; margin-bottom: 20px;">Добро пожаловать, путник!</p>
+
+        <button class="menu-btn" onclick="toggleRules()">📜 Правила сообщества</button>
+        <button class="menu-btn" onclick="openChat()">💬 Перейти в чат</button>
+        
+        <div id="rules" class="rules-text">
+            <p><strong>Добро пожаловать в нашего Бота!</strong> 😻</p>
+            <ul>
+                <li><span class="highlight">★</span> Убедительная просьба не допытываться у наших админов о личной жизни и конфиденциальной информации 🕵️‍♂️</li>
+                <li><span class="highlight">★</span> Общайтесь дружелюбно без матов 🤬🚫</li>
+                <li><span class="highlight">★</span> Админы при общении с вами не испытывают к вам злобы, поэтому постарайтесь сохранить дружелюбное общение 😊</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Развернуть на весь экран
+        tg.ready();  // Сообщить Telegram, что приложение готово
+
+        // Функция показа/скрытия правил
+        function toggleRules() {
+            const rulesDiv = document.getElementById('rules');
+            if (rulesDiv.style.display === 'block') {
+                rulesDiv.style.display = 'none';
+            } else {
+                rulesDiv.style.display = 'block';
+                tg.HapticFeedback.impactOccurred('light'); // Вибро-отклик
+            }
+        }
+
+        // Функция перехода в чат (замените ссылку на ваш чат)
+        function openChat() {
+            tg.openTelegramLink('https://t.me/your_chat_link_here');
+        }
+    </script>
+</body>
+</html>
